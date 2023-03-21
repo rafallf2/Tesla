@@ -16,10 +16,10 @@ namespace Tesla.Data.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Car>().HasMany(c => c.CarLocalisation).WithMany(c => c.Car);
+            modelBuilder.Entity<Car>().HasMany(c => c.CarLocalisation).WithOne(c => c.Car);
             modelBuilder.Entity<Car>().HasMany(c => c.Reservation).WithOne(c => c.Car);
 
-            modelBuilder.Entity<Localisation>().HasMany(l => l.CarLocalisation).WithMany(l => l.Localisation);
+            modelBuilder.Entity<Localisation>().HasMany(l => l.CarLocalisation).WithOne(l => l.Localisation);
             modelBuilder.Entity<Localisation>().HasMany(l => l.Reservation).WithOne(l => l.Localisation);
 
             modelBuilder.Entity<Client>().HasMany(c => c.Reservation).WithOne(c => c.Client);
