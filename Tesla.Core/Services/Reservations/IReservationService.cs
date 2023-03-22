@@ -1,7 +1,9 @@
-﻿namespace Tesla.Core.Services.Reservations
+﻿using Tesla.Data.Dto;
+
+namespace Tesla.Core.Services.Reservations
 {
     public interface IReservationService
     {
-        void Create();
+        void Create(ReservationCreateDto reservationCreateDto);
     }
 }
