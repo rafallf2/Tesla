@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Tesla.Core.Services.Cars;
 using Tesla.Core.Services.Reservations;
 using Tesla.Data.Database;
 using Tesla.Data.Repository;
@@ -12,6 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<TeslaDbContext>(dbOptions => dbOptions.UseSqlServer(builder.Configuration.GetConnectionString("database")));
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IReservationsRepository, ReservationsRepository>();
+builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<ICarRepository, CarRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
