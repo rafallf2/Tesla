@@ -1,14 +1,33 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <q-select class="full-width" :options="localisationOptions" v-model="reservation.localisationId" map-options emit-value dense label="Localisation" option-value="id" option-label="name"></q-select>
-    <q-radio v-model="reservation.carId" v-for="car in carOptions" :key="car.id" :val="car.id" :label="car.name + ' - ' + car.costPerDay + ' $'"></q-radio>
-    <q-input v-model="reservation.phone" dense mask="###-###-###" label="Phone number"></q-input>
-    <q-input v-model="reservation.firstName" dense label="Firstname"></q-input>
-    <q-input v-model="reservation.lastName" dense label="Lastname"></q-input>
-    <q-input v-model="reservation.email" dense label="Email" :rules="[(val, rules) => rules.email(val) || 'Please enter a valid email address']"></q-input>
-    <q-date v-model="dateRange" range/>
-    <h5 v-show="totalCost">Total Cost: {{ totalCost }} $</h5>
-    <q-btn label="Reserve now!" @click="reservate" :disable="!totalCost"/>
+  <q-page class="fit column wrap justify-center content-center bg-white shadow-24" style="max-width: 600px; margin: auto;">
+      <div class="row q-pa-md">
+        <div class="full-width row q-pa-md">
+          <q-select class="full-width" :options="localisationOptions" v-model="reservation.localisationId" map-options emit-value dense label="Localisation" option-value="id" option-label="name"></q-select>
+        </div>
+        <div class="row q-pa-md full-width justify-evenly">
+          <q-radio v-model="reservation.carId" v-for="car in carOptions" :key="car.id" :val="car.id" :label="car.name + ' - ' + car.costPerDay + ' $'"></q-radio></div>
+        </div>
+    <div class="row q-pa-md">
+      <div class="row q-pa-md full-width">
+        <q-input class="full-width" v-model="reservation.phone" dense mask="###-###-###" label="Phone number"></q-input>
+      </div>
+      <div class="full-width row q-pa-md">
+        <q-input class="full-width" v-model="reservation.firstName" dense label="Firstname"></q-input>
+      </div>
+      <div class="full-width row q-pa-md">
+        <q-input class="full-width" v-model="reservation.lastName" dense label="Lastname"></q-input>
+      </div>
+      <div class="full-width row q-pa-md">
+        <q-input class="full-width" v-model="reservation.email" dense label="Email" :rules="[(val, rules) => rules.email(val) || 'Please enter a valid email address']"></q-input>
+      </div>
+    </div>
+    <div class="full-width justify-center row q-pa-md">
+      <q-date v-model="dateRange" range/>
+    </div>
+    <div class="full-width justify-center row q-pa-md">
+      <h5 v-show="totalCost">Total Cost: {{ totalCost }} $</h5>
+      <q-btn class="full-width" color="primary" label="Reserve now!" @click="reservate" :disable="!totalCost"/>
+    </div>
   </q-page>
 </template>
 
@@ -23,7 +42,7 @@ export default defineComponent({
     return{
       localisationOptions: [],
       carOptions: [],
-      reservation: reactive({
+      reservation: {
         firstName: null,
         lastName: null,
         email: null,
@@ -32,7 +51,7 @@ export default defineComponent({
         localisationId: null,
         dateFrom: '',
         dateTo: ''
-      }),
+      },
       returnReservationId: null,
       dateRange: reactive({
         from: '2023-03-27',
@@ -80,15 +99,17 @@ export default defineComponent({
       })
     },
     createReservation() {
+      console.log(this.reservation)
       if(this.reservation.firstName && this.reservation.lastName && this.reservation.email && this.reservation.phone && this.reservation.dateFrom && this.reservation.dateTo && this.reservation.carId && this.reservation.localisationId) {
-      api.post('/reservations', {FirstName: this.reservation.firstName,
-        lastName: null,
-        email: null,
-        phone: null,
-        carId: null,
-        localisationId: null,
-        dateFrom: '',
-        dateTo: ''})
+      api.post('/reservations', {firstName: this.reservation.firstName,
+        lastName: this.reservation.lastName,
+        email: this.reservation.email,
+        phone: this.reservation.phone,
+        carId: this.reservation.carId,
+        localisationId: this.reservation.localisationId,
+        dateFrom: new Date(this.reservation.dateFrom),
+        dateTo: new Date(this.reservation.dateTo)
+      })
       .then(() => {
         this.q.notify({
           message: 'Reservation created.',
