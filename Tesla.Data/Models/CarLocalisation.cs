@@ -7,6 +7,5 @@
         public Car Car { get; set; }
         public int LocalisationId { get; set; }
         public Localisation Localisation { get; set; }
-        public int Availability { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Tesla.Core.Services.Reservations;
 
 namespace Tesla.Controllers
@@ -8,7 +7,8 @@ namespace Tesla.Controllers
     {
         private const string CreateError = "Reservation creating error!";
         private readonly IReservationService _reservationService;
-        public ReservationController(IReservationService reservationService) {
+        public ReservationController(IReservationService reservationService)
+        {
             _reservationService = reservationService;
         }
 

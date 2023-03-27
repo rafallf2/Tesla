@@ -2,14 +2,15 @@
 
 namespace Tesla.Controllers
 {
-    public partial class CarController
+    public partial class ReservationController
     {
-        [HttpGet("cars")]
-        public IActionResult GetAllCars()
+        [HttpPost("reservations/{id}/return")]
+        public IActionResult ReturnCar([FromRoute] int id)
         {
             try
             {
-                return Ok(_carService.GetAllCars());
+                _reservationService.ReturnCar(id);
+                return Ok();
             }
             catch (Exception ex)
             {

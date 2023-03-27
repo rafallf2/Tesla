@@ -1,5 +1,4 @@
-﻿using Tesla.Data.Dto;
-using Tesla.Data.Models;
+﻿using Tesla.Data.Models;
 
 namespace Tesla.Data.Repository
 {

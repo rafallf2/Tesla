@@ -7,5 +7,6 @@ namespace Tesla.Data.Repository
         int CreateClient(Client model);
         void CreateReservation(Reservation model);
         double GetTotalCost(GetTotalCost model);
+        void ReturnCar(int reservationId);
     }
 }

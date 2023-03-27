@@ -12,6 +12,6 @@
         public double TotalCost { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
-
+        public bool IsReturned { get; set; }
     }
 }

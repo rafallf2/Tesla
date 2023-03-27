@@ -2,10 +2,10 @@
 
 namespace Tesla.Data.Repository
 {
-    public partial class ReservationsRepository : IReservationsRepository
+    public partial class LocalisationRepository : ILocalisationRepository
     {
         private readonly TeslaDbContext _database;
-        public ReservationsRepository(TeslaDbContext database)
+        public LocalisationRepository(TeslaDbContext database)
         {
             _database = database;
         }

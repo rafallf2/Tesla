@@ -7,8 +7,9 @@ namespace Tesla.Core.Services.Reservations
     {
         public void Create(ReservationCreateDto reservationCreateDto)
         {
-            var clientId = _reservationsRepository.CreateClient(new Client { 
-                Email = reservationCreateDto.Email, 
+            var clientId = _reservationsRepository.CreateClient(new Client
+            {
+                Email = reservationCreateDto.Email,
                 FirstName = reservationCreateDto.FirstName,
                 LastName = reservationCreateDto.LastName,
                 Phone = reservationCreateDto.Phone

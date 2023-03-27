@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Tesla.Data.Models;
 
 namespace Tesla.Data.Database
 {
     public class TeslaDbContext : DbContext
     {
-        public TeslaDbContext(DbContextOptions dbOptions):base(dbOptions) { }
+        public TeslaDbContext(DbContextOptions dbOptions) : base(dbOptions) { }
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarLocalisation> CarLocalisations { get; set; }

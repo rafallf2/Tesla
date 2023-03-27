@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Tesla.Data.Models;
+﻿using Tesla.Data.Models;
 
 namespace Tesla.Data.Repository
 {

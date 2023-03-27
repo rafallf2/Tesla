@@ -2,14 +2,14 @@
 
 namespace Tesla.Controllers
 {
-    public partial class CarController
+    public partial class LocalisationController
     {
-        [HttpGet("cars")]
-        public IActionResult GetAllCars()
+        [HttpGet("localisations")]
+        public IActionResult GetAllLocalisations()
         {
             try
             {
-                return Ok(_carService.GetAllCars());
+                return Ok(_localisationService.GetAllLocalisations());
             }
             catch (Exception ex)
             {
