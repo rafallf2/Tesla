@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Tesla.Data.Dto;
+using Tesla.Data.Models;
 
 namespace Tesla.Controllers
 {
     public partial class ReservationController
     {
-        [HttpPost("reservations")]
-        public IActionResult Create([FromBody] ReservationCreateDto reservationCreateDto)
+        [HttpGet("reservations/get-total-cost")]
+        public IActionResult GetTotalCost([FromQuery] GetTotalCost model)
         {
             try
             {
-                _reservationService.Create(reservationCreateDto);
-                return Ok();
+                return Ok(_reservationService.GetTotalCost(model));
             }
             catch (Exception ex)
             {
